@@ -3,7 +3,7 @@ import 'package:phone_contacts/Pages/signup_page.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -32,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 60),
@@ -46,10 +45,10 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   children: [
                     Card(
-                      elevation: 5.0,
+                      elevation: 5,
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Container(
                         padding: const EdgeInsets.all(15),
@@ -60,7 +59,6 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             TextField(
                               controller: email,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
@@ -70,21 +68,20 @@ class _LoginPageState extends State<LoginPage> {
                                 icon: Icon(
                                   Icons.email_outlined,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: TextStyle(color: Colors.black),
-                                hintText: "Email address",
+                                hintText: 'Email address',
                                 border: InputBorder.none,
                               ),
                             ),
                             Container(
-                              width: 300.0,
-                              height: 1.0,
+                              width: 300,
+                              height: 1,
                               color: Colors.grey[400],
                             ),
                             TextField(
                               controller: password,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
@@ -95,10 +92,10 @@ class _LoginPageState extends State<LoginPage> {
                                 icon: const Icon(
                                   Icons.lock_outline_rounded,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: const TextStyle(color: Colors.black),
-                                hintText: "Password",
+                                hintText: 'Password',
                                 border: InputBorder.none,
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -108,9 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                     );
                                   },
-                                  icon: Icon(passwordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
+                                  icon: Icon(
+                                    passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
                                 ),
                               ),
                             ),
@@ -122,10 +121,11 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.only(top: 150),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.deepPurple,
-                            minimumSize: const Size(180, 40)),
+                          primary: Colors.deepPurple,
+                          minimumSize: const Size(180, 40),
+                        ),
                         onPressed: () {},
-                        child: const Text("LOGIN"),
+                        child: const Text('LOGIN'),
                       ),
                     )
                   ],
@@ -133,8 +133,9 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).push(
+                      // ignore: inference_failure_on_instance_creation
                       MaterialPageRoute(
-                        builder: ((context) => const SignupPage()),
+                        builder: (context) => const SignupPage(),
                       ),
                     );
                   },
@@ -146,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Create your account"),
+                      Text('Create your account'),
                       Icon(Icons.arrow_forward_rounded)
                     ],
                   ),

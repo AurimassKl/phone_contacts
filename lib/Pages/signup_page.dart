@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -46,10 +46,10 @@ class _SignupPageState extends State<SignupPage> {
                   alignment: Alignment.center,
                   children: [
                     Card(
-                      elevation: 5.0,
+                      elevation: 5,
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Container(
                         padding: const EdgeInsets.all(15),
@@ -69,16 +69,16 @@ class _SignupPageState extends State<SignupPage> {
                                 icon: Icon(
                                   Icons.person,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: TextStyle(color: Colors.black),
-                                hintText: "Name",
+                                hintText: 'Name',
                                 border: InputBorder.none,
                               ),
                             ),
                             Container(
-                              width: 300.0,
-                              height: 1.0,
+                              width: 300,
+                              height: 1,
                               color: Colors.grey[400],
                             ),
                             TextField(
@@ -92,16 +92,16 @@ class _SignupPageState extends State<SignupPage> {
                                 icon: Icon(
                                   Icons.email_outlined,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: TextStyle(color: Colors.black),
-                                hintText: "Email address",
+                                hintText: 'Email address',
                                 border: InputBorder.none,
                               ),
                             ),
                             Container(
-                              width: 300.0,
-                              height: 1.0,
+                              width: 300,
+                              height: 1,
                               color: Colors.grey[400],
                             ),
                             TextField(
@@ -116,10 +116,10 @@ class _SignupPageState extends State<SignupPage> {
                                 icon: const Icon(
                                   Icons.lock_outline_rounded,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: const TextStyle(color: Colors.black),
-                                hintText: "Password",
+                                hintText: 'Password',
                                 border: InputBorder.none,
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -129,15 +129,17 @@ class _SignupPageState extends State<SignupPage> {
                                       },
                                     );
                                   },
-                                  icon: Icon(passwordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
+                                  icon: Icon(
+                                    passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
                                 ),
                               ),
                             ),
                             Container(
-                              width: 300.0,
-                              height: 1.0,
+                              width: 300,
+                              height: 1,
                               color: Colors.grey[400],
                             ),
                             TextField(
@@ -152,10 +154,10 @@ class _SignupPageState extends State<SignupPage> {
                                 icon: const Icon(
                                   Icons.lock_outline_rounded,
                                   color: Colors.black,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 hintStyle: const TextStyle(color: Colors.black),
-                                hintText: "Confirm Password",
+                                hintText: 'Confirm Password',
                                 border: InputBorder.none,
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -166,9 +168,11 @@ class _SignupPageState extends State<SignupPage> {
                                       },
                                     );
                                   },
-                                  icon: Icon(confirmPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
+                                  icon: Icon(
+                                    confirmPasswordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
                                 ),
                               ),
                             ),
@@ -180,11 +184,12 @@ class _SignupPageState extends State<SignupPage> {
                       padding: const EdgeInsets.only(top: 230),
                       child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.deepPurple,
-                            minimumSize: const Size(180, 40)),
+                          primary: Colors.deepPurple,
+                          minimumSize: const Size(180, 40),
+                        ),
                         onPressed: () {},
                         icon: const Icon(Icons.add),
-                        label: const Text("SIGN UP"),
+                        label: const Text('SIGN UP'),
                       ),
                     )
                   ],
