@@ -36,7 +36,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Image(
                   height: 301,
@@ -61,7 +60,6 @@ class _SignupPageState extends State<SignupPage> {
                           children: [
                             TextField(
                               controller: name,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
@@ -85,7 +83,6 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             TextField(
                               controller: email,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
@@ -109,7 +106,6 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             TextField(
                               controller: password,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
@@ -146,7 +142,6 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             TextField(
                               controller: confirmPassword,
-                              maxLines: 1,
                               cursorColor: Colors.black,
                               style: const TextStyle(
                                 color: Colors.black,
