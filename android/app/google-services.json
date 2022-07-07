@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196411109274",
+    "project_id": "phone-contacts-a3a24",
+    "storage_bucket": "phone-contacts-a3a24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196411109274:android:9072968b50af1a37ec5423",
+        "android_client_info": {
+          "package_name": "com.example.phone_contacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196411109274-gobhsiobp9h50rk6mltqsbgot5ogiqn7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbltBiuAPYA_Uoc7WDbwCAsp4jlcFgLCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196411109274-gobhsiobp9h50rk6mltqsbgot5ogiqn7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
