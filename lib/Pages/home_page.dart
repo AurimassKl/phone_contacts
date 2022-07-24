@@ -7,7 +7,8 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(fireBaseAuthProvider);
+    // final data = ref.watch(fireBaseAuthProvider);
+    final name = ref.watch(authenticationProvider).name;
 
     final auth = ref.watch(authenticationProvider);
     return Scaffold(
@@ -16,13 +17,12 @@ class HomePage extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(data.currentUser!.email ?? 'You are logged In'),
+              child: Text(name),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                data.currentUser!.displayName ??
-                    ' Great you have Completed this step',
+            const Padding(
+              padding: EdgeInsets.all(8),
+              child: Text( 
+                ' Great you have Completed this step',
               ),
             ),
             Container(

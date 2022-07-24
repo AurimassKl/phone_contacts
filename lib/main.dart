@@ -4,8 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phone_contacts/pages/auth_checker.dart';
 import 'package:phone_contacts/pages/error_screen.dart';
 import 'package:phone_contacts/pages/loading_screen.dart';
-// import 'package:phone_contacts/pages/signin_page.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
