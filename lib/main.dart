@@ -5,7 +5,6 @@ import 'package:phone_contacts/pages/auth_checker.dart';
 import 'package:phone_contacts/pages/error_screen.dart';
 import 'package:phone_contacts/pages/loading_screen.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

@@ -1,49 +1,26 @@
-// ignore_for_file: inference_failure_on_function_invocation, avoid_print
+// ignore_for_file: inference_failure_on_function_invocation
 
-import 'dart:ffi';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_contacts/provider/auth_provider.dart';
 
 class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String name = '';
 
   Stream<User?> get authStateChange => _auth.authStateChanges();
 
-  // Future<Void> getUserName(User user) async {
-  //   final DocumentReference ref =
-  //       dataProvider.collection('users').doc(user.uid);
-
-  //   final snapshot = await ref.get();
-  //   name = snapshot.get('Name').toString();
-
-  //   // return name;
-  // }
 
   Future<void> signInWithEmailAndPassword(
     String email,
     String password,
     BuildContext context,
   ) async {
+
     try {
-      final user = (await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
-      ))
-          .user;
-
-      // name = getUserName(user!) as String;
-      final DocumentReference ref =
-          dataProvider.collection('users').doc(user?.uid);
-
-      final snapshot = await ref.get();
-      name = snapshot.get('Name').toString();
-      debugPrint(snapshot.get('Name').toString());
-      debugPrint(snapshot.data().toString());
-      debugPrint(name);
+      );
     } on FirebaseAuthException catch (e) {
       await showDialog(
         context: context,
@@ -99,13 +76,7 @@ class Authentication {
           ],
         ),
       );
-    } catch (e) {
-      if (e == 'email-already-in-use') {
-        print('Email already in use.');
-      } else {
-        print('Error: $e');
-      }
-    }
+    } 
   }
 
   Future<void> signOut() async {
