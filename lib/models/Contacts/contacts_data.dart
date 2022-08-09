@@ -12,6 +12,7 @@ abstract class ContactData implements _$ContactData {
     @Default('Unknown') String contactName,
     @Default('Unknown') String contactNumber,
     @Default('Unknown') String contactUserId,
+    @Default('Unknown') String contactImageURL,
   }) = _ContactData;
 
   factory ContactData.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +25,7 @@ abstract class ContactData implements _$ContactData {
       contactName: document.get('Name').toString(),
       contactNumber: document.get('Number').toString(),
       contactUserId: document.get('User_id').toString(),
+      contactImageURL: document.get('ImageURL').toString(),
     );
   }
 }

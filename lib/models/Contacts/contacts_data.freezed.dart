@@ -23,6 +23,7 @@ mixin _$ContactData {
   String get contactName => throw _privateConstructorUsedError;
   String get contactNumber => throw _privateConstructorUsedError;
   String get contactUserId => throw _privateConstructorUsedError;
+  String get contactImageURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,11 @@ abstract class $ContactDataCopyWith<$Res> {
   factory $ContactDataCopyWith(
           ContactData value, $Res Function(ContactData) then) =
       _$ContactDataCopyWithImpl<$Res>;
-  $Res call({String contactName, String contactNumber, String contactUserId});
+  $Res call(
+      {String contactName,
+      String contactNumber,
+      String contactUserId,
+      String contactImageURL});
 }
 
 /// @nodoc
@@ -51,6 +56,7 @@ class _$ContactDataCopyWithImpl<$Res> implements $ContactDataCopyWith<$Res> {
     Object? contactName = freezed,
     Object? contactNumber = freezed,
     Object? contactUserId = freezed,
+    Object? contactImageURL = freezed,
   }) {
     return _then(_value.copyWith(
       contactName: contactName == freezed
@@ -65,6 +71,10 @@ class _$ContactDataCopyWithImpl<$Res> implements $ContactDataCopyWith<$Res> {
           ? _value.contactUserId
           : contactUserId // ignore: cast_nullable_to_non_nullable
               as String,
+      contactImageURL: contactImageURL == freezed
+          ? _value.contactImageURL
+          : contactImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -76,7 +86,11 @@ abstract class _$$_ContactDataCopyWith<$Res>
           _$_ContactData value, $Res Function(_$_ContactData) then) =
       __$$_ContactDataCopyWithImpl<$Res>;
   @override
-  $Res call({String contactName, String contactNumber, String contactUserId});
+  $Res call(
+      {String contactName,
+      String contactNumber,
+      String contactUserId,
+      String contactImageURL});
 }
 
 /// @nodoc
@@ -94,6 +108,7 @@ class __$$_ContactDataCopyWithImpl<$Res> extends _$ContactDataCopyWithImpl<$Res>
     Object? contactName = freezed,
     Object? contactNumber = freezed,
     Object? contactUserId = freezed,
+    Object? contactImageURL = freezed,
   }) {
     return _then(_$_ContactData(
       contactName: contactName == freezed
@@ -108,6 +123,10 @@ class __$$_ContactDataCopyWithImpl<$Res> extends _$ContactDataCopyWithImpl<$Res>
           ? _value.contactUserId
           : contactUserId // ignore: cast_nullable_to_non_nullable
               as String,
+      contactImageURL: contactImageURL == freezed
+          ? _value.contactImageURL
+          : contactImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -118,7 +137,8 @@ class _$_ContactData extends _ContactData {
   const _$_ContactData(
       {this.contactName = 'Unknown',
       this.contactNumber = 'Unknown',
-      this.contactUserId = 'Unknown'})
+      this.contactUserId = 'Unknown',
+      this.contactImageURL = 'Unknown'})
       : super._();
 
   factory _$_ContactData.fromJson(Map<String, dynamic> json) =>
@@ -133,10 +153,13 @@ class _$_ContactData extends _ContactData {
   @override
   @JsonKey()
   final String contactUserId;
+  @override
+  @JsonKey()
+  final String contactImageURL;
 
   @override
   String toString() {
-    return 'ContactData(contactName: $contactName, contactNumber: $contactNumber, contactUserId: $contactUserId)';
+    return 'ContactData(contactName: $contactName, contactNumber: $contactNumber, contactUserId: $contactUserId, contactImageURL: $contactImageURL)';
   }
 
   @override
@@ -149,7 +172,9 @@ class _$_ContactData extends _ContactData {
             const DeepCollectionEquality()
                 .equals(other.contactNumber, contactNumber) &&
             const DeepCollectionEquality()
-                .equals(other.contactUserId, contactUserId));
+                .equals(other.contactUserId, contactUserId) &&
+            const DeepCollectionEquality()
+                .equals(other.contactImageURL, contactImageURL));
   }
 
   @JsonKey(ignore: true)
@@ -158,7 +183,8 @@ class _$_ContactData extends _ContactData {
       runtimeType,
       const DeepCollectionEquality().hash(contactName),
       const DeepCollectionEquality().hash(contactNumber),
-      const DeepCollectionEquality().hash(contactUserId));
+      const DeepCollectionEquality().hash(contactUserId),
+      const DeepCollectionEquality().hash(contactImageURL));
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +203,8 @@ abstract class _ContactData extends ContactData {
   const factory _ContactData(
       {final String contactName,
       final String contactNumber,
-      final String contactUserId}) = _$_ContactData;
+      final String contactUserId,
+      final String contactImageURL}) = _$_ContactData;
   const _ContactData._() : super._();
 
   factory _ContactData.fromJson(Map<String, dynamic> json) =
@@ -189,6 +216,8 @@ abstract class _ContactData extends ContactData {
   String get contactNumber;
   @override
   String get contactUserId;
+  @override
+  String get contactImageURL;
   @override
   @JsonKey(ignore: true)
   _$$_ContactDataCopyWith<_$_ContactData> get copyWith =>

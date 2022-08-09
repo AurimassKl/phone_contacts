@@ -18,6 +18,7 @@ class _AddPageState extends ConsumerState<AddPage> {
   final name = TextEditingController();
   final number = TextEditingController();
   File? imageFile;
+  late String urlDownload;
 
   Future<void> pickImage(ImageSource source) async {
     try {
@@ -42,8 +43,9 @@ class _AddPageState extends ConsumerState<AddPage> {
             if (!_formKey.currentState!.validate()) {
               return;
             }
+            urlDownload = await database.uploadFile(imageFile);
             await database
-                .addNewContact(name.text, number.text)
+                .addNewContact(name.text, number.text, urlDownload)
                 .whenComplete(() {
               Navigator.pop(context);
             });

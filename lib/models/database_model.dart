@@ -2,10 +2,12 @@
 // ignore_for_file: inference_failure_on_instance_creation
 // ignore_for_file: inference_failure_on_untyped_parameter
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:phone_contacts/models/User/user_data.dart';
 import 'package:phone_contacts/provider/auth_provider.dart';
+import 'package:phone_contacts/provider/database_provider.dart';
 
 class Database {
   final _firestore = FirebaseFirestore.instance;
@@ -39,12 +41,17 @@ class Database {
     });
   }
 
-  Future<void> addNewContact(String name, String number) async {
+  Future<void> addNewContact(
+    String? name,
+    String? number,
+    String? fileURL,
+  ) async {
     final userId = fireBaseAuthProvider.currentUser!.uid;
     await _firestore.collection('contacts').add({
       'name': name,
       'number': number,
       'user_id': userId,
+      'user_image_URL': fileURL,
     }).then((value) {
       updateUsersContacts(value.id, userId);
     });
@@ -57,5 +64,16 @@ class Database {
     await _firestore.collection('users').doc(userId).update({
       'Contacts': FieldValue.arrayUnion(<String>[contactId.toString()])
     });
+  }
+
+  
+  Future<String> uploadFile(File? imageFile) async {
+    final path = 'pictures/${imageFile!.path.split('/').last}';
+    final file = File(imageFile.path);
+
+    await firebaseStorageProvider.ref().child(path).putFile(file);
+
+    final ref = firebaseStorageProvider.ref().child(path);
+    return ref.getDownloadURL();
   }
 }
