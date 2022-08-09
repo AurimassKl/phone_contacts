@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phone_contacts/models/user_data.dart';
+import 'package:phone_contacts/models/User/user_data.dart';
+import 'package:phone_contacts/pages/add_contact_page.dart';
 import 'package:phone_contacts/provider/auth_provider.dart';
 import 'package:phone_contacts/provider/database_provider.dart';
 
@@ -14,7 +15,6 @@ class HomePage extends ConsumerWidget {
     final database = ref.read(databaseProvider);
     final auth = ref.watch(authenticationProvider);
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 44, 43, 43),
       appBar: AppBar(
         title: const Text('Contacts'),
         actions: [
@@ -40,34 +40,64 @@ class HomePage extends ConsumerWidget {
             if (snapshot.error != null) {
               return const Center(child: Text('Some error occurred'));
             }
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 20),
-                  child: Center(
-                    child: Text(
-                      'Welcome ${snapshot.data!.userName} !',
-                      maxLines: 3,
-                      style: const TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w900,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Open Sans',
-                        fontSize: 35,
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height -
+                  (MediaQuery.of(context).padding.top + kToolbarHeight),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color.fromARGB(255, 144, 95, 228),
+                    Colors.white,
+                  ],
+                ),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                    child: Card(
+                      color: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5, bottom: 5),
+                        child: Center(
+                          child: Text(
+                            'Welcome ${snapshot.data!.userName} !',
+                            maxLines: 2,
+                            style: TextStyle(
+                              color: Colors.blue[900],
+                              fontWeight: FontWeight.w900,
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Open Sans',
+                              fontSize: 35,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const Divider(
-                  height: 0,
-                  thickness: 2,
-                  color: Colors.white,
-                ),
-                Container()
-              ],
+                  Container(),
+                ],
+              ),
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            // ignore: inference_failure_on_instance_creation
+            MaterialPageRoute(
+              builder: (context) => const AddPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

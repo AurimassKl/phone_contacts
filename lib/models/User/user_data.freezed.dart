@@ -22,6 +22,7 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 mixin _$UserData {
   String get userName => throw _privateConstructorUsedError;
   String get userEmail => throw _privateConstructorUsedError;
+  List<String> get userContacts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ mixin _$UserData {
 abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res>;
-  $Res call({String userName, String userEmail});
+  $Res call({String userName, String userEmail, List<String> userContacts});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
   $Res call({
     Object? userName = freezed,
     Object? userEmail = freezed,
+    Object? userContacts = freezed,
   }) {
     return _then(_value.copyWith(
       userName: userName == freezed
@@ -58,6 +60,10 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
               as String,
+      userContacts: userContacts == freezed
+          ? _value.userContacts
+          : userContacts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
           _$_UserData value, $Res Function(_$_UserData) then) =
       __$$_UserDataCopyWithImpl<$Res>;
   @override
-  $Res call({String userName, String userEmail});
+  $Res call({String userName, String userEmail, List<String> userContacts});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
   $Res call({
     Object? userName = freezed,
     Object? userEmail = freezed,
+    Object? userContacts = freezed,
   }) {
     return _then(_$_UserData(
       userName: userName == freezed
@@ -95,6 +102,10 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
               as String,
+      userContacts: userContacts == freezed
+          ? _value._userContacts
+          : userContacts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -102,8 +113,12 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserData extends _UserData with DiagnosticableTreeMixin {
-  const _$_UserData({this.userName = 'Unknown', this.userEmail = 'Unknown'})
-      : super._();
+  const _$_UserData(
+      {this.userName = 'Unknown',
+      this.userEmail = 'Unknown',
+      final List<String> userContacts = const []})
+      : _userContacts = userContacts,
+        super._();
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
@@ -114,10 +129,17 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
   @override
   @JsonKey()
   final String userEmail;
+  final List<String> _userContacts;
+  @override
+  @JsonKey()
+  List<String> get userContacts {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userContacts);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(userName: $userName, userEmail: $userEmail)';
+    return 'UserData(userName: $userName, userEmail: $userEmail, userContacts: $userContacts)';
   }
 
   @override
@@ -126,7 +148,8 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'UserData'))
       ..add(DiagnosticsProperty('userName', userName))
-      ..add(DiagnosticsProperty('userEmail', userEmail));
+      ..add(DiagnosticsProperty('userEmail', userEmail))
+      ..add(DiagnosticsProperty('userContacts', userContacts));
   }
 
   @override
@@ -135,7 +158,9 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is _$_UserData &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
-            const DeepCollectionEquality().equals(other.userEmail, userEmail));
+            const DeepCollectionEquality().equals(other.userEmail, userEmail) &&
+            const DeepCollectionEquality()
+                .equals(other._userContacts, _userContacts));
   }
 
   @JsonKey(ignore: true)
@@ -143,7 +168,8 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userName),
-      const DeepCollectionEquality().hash(userEmail));
+      const DeepCollectionEquality().hash(userEmail),
+      const DeepCollectionEquality().hash(_userContacts));
 
   @JsonKey(ignore: true)
   @override
@@ -159,8 +185,10 @@ class _$_UserData extends _UserData with DiagnosticableTreeMixin {
 }
 
 abstract class _UserData extends UserData {
-  const factory _UserData({final String userName, final String userEmail}) =
-      _$_UserData;
+  const factory _UserData(
+      {final String userName,
+      final String userEmail,
+      final List<String> userContacts}) = _$_UserData;
   const _UserData._() : super._();
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
@@ -169,6 +197,8 @@ abstract class _UserData extends UserData {
   String get userName;
   @override
   String get userEmail;
+  @override
+  List<String> get userContacts;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

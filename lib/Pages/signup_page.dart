@@ -1,9 +1,6 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phone_contacts/provider/auth_provider.dart';
-// import 'package:phone_contacts/provider/auth_provider.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -14,7 +11,6 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  // final GlobalKey _widgetKey = GlobalKey();
   final name = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();

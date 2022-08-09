@@ -1,4 +1,5 @@
 // ignore_for_file: inference_failure_on_function_invocation
+// ignore_for_file: inference_failure_on_collection_literal
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,11 @@ class Authentication {
 
   Stream<User?> get authStateChange => _auth.authStateChanges();
 
-
   Future<void> signInWithEmailAndPassword(
     String email,
     String password,
     BuildContext context,
   ) async {
-
     try {
       await _auth.signInWithEmailAndPassword(
         email: email,
@@ -44,6 +43,7 @@ class Authentication {
     await dataProvider.collection('users').doc(uid).set({
       'Name': username,
       'Email': email,
+      'Contacts': [],
     });
   }
 
@@ -76,7 +76,7 @@ class Authentication {
           ],
         ),
       );
-    } 
+    }
   }
 
   Future<void> signOut() async {

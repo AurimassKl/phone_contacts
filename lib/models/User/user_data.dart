@@ -1,5 +1,4 @@
 // ignore_for_file: unnecessary_null_comparison
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,6 +11,7 @@ abstract class UserData implements _$UserData {
   const factory UserData({
     @Default('Unknown') String userName,
     @Default('Unknown') String userEmail,
+    @Default([]) List<String> userContacts,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +23,7 @@ abstract class UserData implements _$UserData {
     return UserData(
       userName: document.get('Name').toString(),
       userEmail: document.get('Email').toString(),
+      userContacts: List<String>.from(document.get('Contacts') as List),
     );
   }
 }
