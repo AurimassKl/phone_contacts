@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phone_contacts/models/auth_model.dart';
@@ -11,8 +11,6 @@ final authStateProvider = StreamProvider<User?>((ref) {
   return ref.read(authenticationProvider).authStateChange;
 });
 
-final fireBaseAuthProvider = Provider<FirebaseAuth>((ref) {
-  return FirebaseAuth.instance;
-});
+final fireBaseAuthProvider = FirebaseAuth.instance;
 
-final dataProvider = FirebaseFirestore.instance;
+// final dataProvider = FirebaseFirestore.instance;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:phone_contacts/provider/database_provider.dart';
 
 class AddPage extends ConsumerStatefulWidget {
   const AddPage({super.key});
@@ -36,11 +37,16 @@ class _AddPageState extends ConsumerState<AddPage> {
       ),
       body: Consumer(
         builder: (context, ref, _) {
+          final database = ref.watch(databaseProvider);
           Future<void> _onPressedFunction() async {
             if (!_formKey.currentState!.validate()) {
               return;
             }
-            // await firestore.addNewContact(name.text, number.text);
+            await database
+                .addNewContact(name.text, number.text)
+                .whenComplete(() {
+              Navigator.pop(context);
+            });
           }
 
           return Form(

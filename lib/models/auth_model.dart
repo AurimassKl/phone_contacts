@@ -3,7 +3,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:phone_contacts/provider/auth_provider.dart';
+import 'package:phone_contacts/models/database_model.dart';
 
 class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -39,14 +39,6 @@ class Authentication {
     }
   }
 
-  Future<void> createUser(String? uid, String username, String email) async {
-    await dataProvider.collection('users').doc(uid).set({
-      'Name': username,
-      'Email': email,
-      'Contacts': [],
-    });
-  }
-
   Future<void> signUpWithEmailAndPassword(
     String email,
     String password,
@@ -59,7 +51,7 @@ class Authentication {
         password: password,
       ))
           .user;
-      await createUser(result?.uid, name, email);
+      await Database().createUser(result?.uid, name, email);
     } on FirebaseAuthException catch (e) {
       await showDialog(
         context: context,
