@@ -17,6 +17,7 @@ class _AddPageState extends ConsumerState<AddPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final name = TextEditingController();
   final number = TextEditingController();
+  bool imageRequired = false;
   File? imageFile;
   late String urlDownload;
 
@@ -39,8 +40,15 @@ class _AddPageState extends ConsumerState<AddPage> {
       body: Consumer(
         builder: (context, ref, _) {
           final database = ref.watch(databaseProvider);
+
           Future<void> _onPressedFunction() async {
             if (!_formKey.currentState!.validate()) {
+              return;
+            }
+            if (imageFile == null) {
+              setState(() {
+                imageRequired = !imageRequired;
+              });
               return;
             }
             urlDownload = await database.uploadFile(imageFile);
@@ -80,6 +88,19 @@ class _AddPageState extends ConsumerState<AddPage> {
                               : FileImage(
                                   imageFile!,
                                 ) as ImageProvider,
+                        ),
+                        Visibility(
+                          visible: imageRequired,
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Text(
+                              '* Image is required',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 15, bottom: 15),

@@ -24,7 +24,7 @@ abstract class ContactData implements _$ContactData {
     return ContactData(
       contactName: document.get('Name').toString(),
       contactNumber: document.get('Number').toString(),
-      contactUserId: document.get('User_id').toString(),
+      contactUserId: document.get('UserId').toString(),
       contactImageURL: document.get('ImageURL').toString(),
     );
   }

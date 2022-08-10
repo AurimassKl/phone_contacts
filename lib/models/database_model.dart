@@ -5,6 +5,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:phone_contacts/models/Contacts/contacts_data.dart';
 import 'package:phone_contacts/models/User/user_data.dart';
 import 'package:phone_contacts/provider/auth_provider.dart';
 import 'package:phone_contacts/provider/database_provider.dart';
@@ -48,10 +49,10 @@ class Database {
   ) async {
     final userId = fireBaseAuthProvider.currentUser!.uid;
     await _firestore.collection('contacts').add({
-      'name': name,
-      'number': number,
-      'user_id': userId,
-      'user_image_URL': fileURL,
+      'Name': name,
+      'Number': number,
+      'UserId': userId,
+      'ImageURL': fileURL,
     }).then((value) {
       updateUsersContacts(value.id, userId);
     });
@@ -66,7 +67,6 @@ class Database {
     });
   }
 
-  
   Future<String> uploadFile(File? imageFile) async {
     final path = 'pictures/${imageFile!.path.split('/').last}';
     final file = File(imageFile.path);
@@ -75,5 +75,19 @@ class Database {
 
     final ref = firebaseStorageProvider.ref().child(path);
     return ref.getDownloadURL();
+  }
+
+  Stream<ContactData?> streamContact(String? id) {
+    try {
+      return _firestore.collection('contacts').doc(id).snapshots().map((doc) {
+        if (doc.exists) {
+          return ContactData.fromDocument(doc);
+        } else {
+          return null;
+        }
+      });
+    } on FirebaseException catch (e) {
+      throw Exception(e.message);
+    }
   }
 }
