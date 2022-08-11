@@ -94,9 +94,8 @@ class HomePage extends ConsumerWidget {
                               );
                             }
                             return ContactsList(
-                              name: snapshotContact.data!.contactName,
-                              number: snapshotContact.data!.contactNumber,
-                              imageURL: snapshotContact.data!.contactImageURL,
+                              contactId: snapshot.data!.userContacts[index],
+                              contact: snapshotContact.data!,
                             );
                           },
                         ),

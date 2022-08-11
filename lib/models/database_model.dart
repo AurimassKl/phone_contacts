@@ -90,4 +90,16 @@ class Database {
       throw Exception(e.message);
     }
   }
+
+  Future<void> deleteContact(
+    String imageURL,
+    String contactID,
+    String userID,
+  ) async {
+    await firebaseStorageProvider.refFromURL(imageURL).delete();
+    await _firestore.collection('contacts').doc(contactID).delete();
+    await _firestore.collection('users').doc(userID).update({
+      'Contacts': FieldValue.arrayRemove([contactID])
+    });
+  }
 }

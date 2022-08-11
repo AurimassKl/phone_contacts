@@ -3,22 +3,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:phone_contacts/models/Contacts/contacts_data.dart';
+import 'package:phone_contacts/provider/database_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactsList extends ConsumerWidget {
   const ContactsList({
     super.key,
-    required this.name,
-    required this.number,
-    required this.imageURL,
+    required this.contactId,
+    required this.contact,
   });
 
-  final String name;
-  final String number;
-  final String imageURL;
+  final String contactId;
+  final ContactData contact;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final database = ref.read(databaseProvider);
     return Slidable(
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
@@ -26,7 +27,7 @@ class ContactsList extends ConsumerWidget {
         children: [
           SlidableAction(
             onPressed: (context) async {
-              await launch('tel://$number');
+              await launch('tel://${contact.contactNumber}');
             },
             backgroundColor: const Color(0xFF0392CF),
             foregroundColor: Colors.white,
@@ -41,6 +42,10 @@ class ContactsList extends ConsumerWidget {
           SlidableAction(
             onPressed: (context) {
               //delete
+              database.deleteContact(
+                contact.contactImageURL,
+                contactId, contact.contactUserId,
+              );
             },
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
@@ -53,33 +58,25 @@ class ContactsList extends ConsumerWidget {
         color: Colors.deepPurple,
         child: ListTile(
           title: Text(
-            name,
+            contact.contactName,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white70,
             ),
           ),
           subtitle: Text(
-            number,
+            contact.contactNumber,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
           leading: CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(imageURL),
+            backgroundImage: NetworkImage(contact.contactImageURL),
             backgroundColor: Colors.transparent,
           ),
         ),
       ),
     );
   }
-
-  // Future<void> _makePhoneCall(String url) async {
-  //   if (await canLaunchUrl(url)) {
-  //     await launchUrl(url);
-  //   } else {
-  //     debugPrint('Could not launch $url');
-  //   }
-  // }
 }
